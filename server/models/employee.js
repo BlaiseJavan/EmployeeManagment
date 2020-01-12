@@ -19,9 +19,9 @@ class Employee {
     const result = await db.query(`
           CREATE TABLE IF NOT EXISTS employee (
               id SERIAL PRIMARY KEY,
-              employeeName text,
-              nationalId text UNIQUE,
-              phoneNumber text UNIQUE,
+              employeename text,
+              nationalid text UNIQUE,
+              phonenumber text UNIQUE,
               email text UNIQUE,
               dob text,
               status text,
