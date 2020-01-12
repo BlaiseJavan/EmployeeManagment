@@ -1,0 +1,54 @@
+{
+  "name": "teamwork",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "build": "babel ./server -d build",
+    "start": "npm run build && npm run db && node --require babel-core/register --require babel-polyfill build/index.js",
+    "db": "node  --require babel-polyfill --require babel-core/register ./server/db/db.js",
+    "dev": "npm run db && nodemon --require babel-polyfill app.js",
+    "test": "NODE_ENV=TEST npm run db && NODE_ENV=TEST nyc --reporter=text --reporter=lcov mocha --timeout 25000 --require babel-polyfill --require babel-register server/tests/*.js --exit",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BlaiseJavan/Teamwork.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BlaiseJavan/Teamwork/issues"
+  },
+  "homepage": "https://github.com/BlaiseJavan/Teamwork#readme",
+  "devDependencies": {
+    "eslint": "^6.3.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "nodemon": "^1.19.2",
+    "nyc": "^14.1.1"
+  },
+  "dependencies": {
+    "@hapi/joi": "^15.1.1",
+    "babel-cli": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0",
+    "bcrypt-nodejs": "0.0.3",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "coveralls": "^3.0.6",
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1",
+    "joi": "^14.3.1",
+    "joi-password-complexity": "^3.1.0",
+    "jsonwebtoken": "^8.5.1",
+    "mocha": "^6.2.0",
+    "moment": "^2.24.0",
+    "pg": "^7.12.1",
+    "supertest": "^4.0.2",
+    "uuid": "^3.3.3",
+    "validator": "^11.1.0"
+  }
+}
