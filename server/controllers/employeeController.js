@@ -13,7 +13,8 @@ class employeeController {
       helper.hashPassword(req.body.password),
     );
    
-    // console.log(employee);
+    console.log(employee);
+    // const newEmployee = await Employee.createEmployee(employee);
     try {
       const newEmployee = await Employee.createEmployee(employee);
       const token = helper.generateToken(newEmployee.rows[0].id, newEmployee.rows[0].email);
@@ -77,6 +78,31 @@ class employeeController {
       return res.status(400).json({
         status: 400,
         massage: errors,
+      });
+    }
+  }
+
+  // method to create an article
+  static async createEmployee(req, res) {
+    try {
+      const employee = new Employee(
+      req.body.employeeName,
+      req.body.nationalId,
+      req.body.phoneNumber,
+      req.body.email,
+      req.body.dob,
+      helper.hashPassword(req.body.password),
+    );
+
+      const newEmployee = await Employee.createEmployee(employee);
+      return res.status(201).json({
+        status: 201,
+        data: newEmployee.rows[0],
+      });
+    } catch (error) {
+      return res.status(401).json({
+        status: 401,
+        message: 'invalid auth',
       });
     }
   }

@@ -9,6 +9,15 @@ const newEmployee = {
    password: 'password'
 };
 
+const emp = {
+  email: 'blaisee@gmail.com',
+  employeeName: 'blaise javan',
+  nationalId: '1111111111111123',
+  phoneNumber: '0788211003',
+  dob: '2020-02-20',
+  password: 'password'
+};
+
 const wrongNewEmployee = {
    email: 'blais@gmail.com',
    employeeName: 'blaise javan',
@@ -51,6 +60,7 @@ const token = helper.generateToken();
 export {
   wrongNewEmployee,
   newEmployee,
+  emp,
   emailExist,
   employee,
   wrongEmployee,

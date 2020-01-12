@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import request from 'supertest';
 import app from '..';
 import {
-  newEmployee, wrongNewEmployee, emailExist, employee, wrongEmployee, requiredPass,
+  newEmployee, wrongNewEmployee, emailExist, employee, wrongEmployee, requiredPass, token, emp
 } from './data';
 
 describe('Employee tests', () => {
@@ -11,6 +11,21 @@ describe('Employee tests', () => {
     request(app)
       .post('/api/auth/signup')
       .send(newEmployee)
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(201)
+      .end((err, res) => {
+        expect(res.body.status).to.be.equal(201);
+        expect(res.body).to.be.a('object');
+        done();
+      });
+  });
+
+  it('Manager Should be able to create an employee', (done) => {
+    request(app)
+      .post('/api/employees')
+      .send(emp)
+      .set('token', token)
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(201)

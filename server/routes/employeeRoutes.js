@@ -9,4 +9,6 @@ const router = express();
 router.post('/signup', employeeController.signup);
 router.post('/signin', validator.signin, employeeController.signin);
 
+router.post('/', auth, employeeController.createEmployee);
+
 export default router;
