@@ -12,9 +12,7 @@ class employeeController {
       req.body.dob,
       helper.hashPassword(req.body.password),
     );
-   
-    console.log(employee);
-    // const newEmployee = await Employee.createEmployee(employee);
+ 
     try {
       const newEmployee = await Employee.createEmployee(employee);
       const token = helper.generateToken(newEmployee.rows[0].id, newEmployee.rows[0].email);
@@ -82,7 +80,7 @@ class employeeController {
     }
   }
 
-  // method to create an article
+  // method to create an employee
   static async createEmployee(req, res) {
     try {
       const employee = new Employee(
@@ -103,6 +101,32 @@ class employeeController {
       return res.status(401).json({
         status: 401,
         message: 'invalid auth',
+      });
+    }
+  }
+
+   // method to delete an employee
+   static async deleteEmployee(req, res) {
+    const column = 'id';
+    const employeeId = req.params.id;
+    const findEmployee = await Employee.findBy(column, employeeId);
+    
+    try {
+      if (findEmployee) {
+          await Employee.Delete(employeeId);
+          return res.status(200).json({
+            status: 200,
+            message: 'the employee successful deleted',
+          });
+        }
+      return res.status(404).json({
+        status: 404,
+        error: 'article not found',
+      });
+    } catch (error) {
+      return res.status(400).json({
+        status: 400,
+        message: error,
       });
     }
   }

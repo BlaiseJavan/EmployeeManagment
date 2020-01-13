@@ -64,5 +64,10 @@ class Employee {
     return result;
   }
 
+  static async Delete(id) {
+    const result = await db.query(`DELETE FROM employee WHERE id='${id}';`);
+    return result;
+  }
+
 }
 export default Employee;
