@@ -54,6 +54,11 @@ class Employee {
     return result;
   }
 
+  static async DropTableEmployee() {
+    const result = await db.query('DROP TABLE IF EXISTS employee;');
+    return result;
+  }
+
   static async selectCount(table, column, value) {
     const result = await db.query(`SELECT COUNT(1) FROM ${table} WHERE ${column} = '${value}';`);
     return result;
@@ -66,6 +71,11 @@ class Employee {
 
   static async Delete(id) {
     const result = await db.query(`DELETE FROM employee WHERE id='${id}';`);
+    return result;
+  }
+
+  static async update(employeeName, nationalId, phoneNumber, email, dob, position, id) {
+    const result = await db.query(`UPDATE employee SET employeename='${employeeName}', nationalid='${nationalId}', phonenumber='${phoneNumber}', email='${email}', dob='${dob}', position='${position}' WHERE id='${id}' returning *;`);
     return result;
   }
 

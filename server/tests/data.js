@@ -55,9 +55,19 @@ const article = {
   tags: 'music',
 };
 
-const id = 1;
+const id = 3;
 
 const token = helper.generateToken();
+
+const updateEmployee = {
+    email: 'blaise7@gmail.com',
+    employeeName: 'blaise irakoze',
+    nationalId: '1111111111114892',
+    phoneNumber: '0788211582',
+    dob: '2020-02-20',
+    password: 'password',
+    position: 'develop'
+};
 
 export {
   wrongNewEmployee,
@@ -70,4 +80,5 @@ export {
   article,
   id,
   token,
+  updateEmployee
 };

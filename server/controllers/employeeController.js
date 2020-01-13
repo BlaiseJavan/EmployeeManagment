@@ -130,6 +130,40 @@ class employeeController {
       });
     }
   }
+
+   // methode to update an article
+   static async updateEmplooyee(req, res) {
+    const column = 'id';
+    const employeeId = req.params.id;
+    const { employeeName, nationalId, phoneNumber, email, dob, position } = req.body;
+    
+    const findEmployee = await Employee.findBy(column, employeeId); 
+    console.log(findEmployee.rows[0]);
+    try{
+    if (findEmployee) {
+        if (findEmployee.rows[0].employeename === employeeName && findEmployee.rows[0].nationalid === nationalId && findEmployee.rows[0].email === email && findEmployee.rows[0].phonenumber === phoneNumber && findEmployee.rows[0].dob === dob && findEmployee.rows[0].position === position) {
+          return res.status(300).json({
+            status: 300,
+            message: 'no modification found',
+          });
+        }
+       
+        const updatedEmployee = await Employee.update(employeeName || findEmployee.rows[0].employeename, nationalId || findEmployee.rows[0].nationalid, phoneNumber || findEmployee.rows[0].phonenumber, email || findEmployee.rows[0].email, dob || findEmployee.rows[0].dob , position || findEmployee.rows[0].position, employeeId);
+        return res.status(200).json({
+          status: 200,
+          message: 'Employee successfully updated',
+          data: updatedEmployee.rows[0],
+        });
+    }
+  }
+   catch(error){
+    return res.status(404).json({
+      status: 404,
+      error: 'Employee not found',
+    });
+   }
+    
+  }
   
 }
 
