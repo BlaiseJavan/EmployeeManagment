@@ -10,5 +10,7 @@ router.post('/signup', employeeController.signup);
 router.post('/signin', validator.signin, employeeController.signin);
 
 router.post('/', auth, employeeController.createEmployee);
+router.delete('/:id', auth, employeeController.deleteEmployee);
+
 
 export default router;

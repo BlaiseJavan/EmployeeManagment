@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import request from 'supertest';
 import app from '..';
 import {
-  newEmployee, wrongNewEmployee, emailExist, employee, wrongEmployee, requiredPass, token, emp
+  newEmployee, wrongNewEmployee, employee, wrongEmployee, requiredPass, token, emp, id
 } from './data';
 
 describe('Employee tests', () => {
@@ -36,6 +36,21 @@ describe('Employee tests', () => {
       });
   });
 
+  it('Manager Should be able to delete an employee', (done) => {
+    request(app)
+      .delete(`/api/employees/${id}`)
+      .send(emp)
+      .set('token', token)
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(201)
+      .end((err, res) => {
+        expect(res.body.status).to.be.equal(200);
+        expect(res.body).to.be.a('object');
+        done();
+      });
+  });
+
   it('Should not be able to sign up when the data are invalid', (done) => {
     request(app)
       .post('/api/auth/signup')
@@ -49,20 +64,6 @@ describe('Employee tests', () => {
         done();
       });
   });
-
-  // it('Should not be able to sign up when email is exist', (done) => {
-  //   request(app)
-  //     .post('/api/auth/signup')
-  //     .send(emailExist)
-  //     .set('Accept', 'application/json')
-  //     .expect('Content-Type', /json/)
-  //     .expect(409)
-  //     .end((err, res) => {
-  //       expect(res.body.status).to.be.equal(409);
-  //       expect(res.body).to.be.a('object');
-  //       done();
-  //     });
-  // });
 
   it('Should be able to signin', (done) => {
     request(app)

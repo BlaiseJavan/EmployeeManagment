@@ -55,6 +55,8 @@ const article = {
   tags: 'music',
 };
 
+const id = 1;
+
 const token = helper.generateToken();
 
 export {
@@ -66,5 +68,6 @@ export {
   wrongEmployee,
   requiredPass,
   article,
+  id,
   token,
 };
