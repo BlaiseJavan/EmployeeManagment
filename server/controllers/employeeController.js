@@ -161,8 +161,36 @@ class employeeController {
       status: 404,
       error: 'Employee not found',
     });
-   }
-    
+   } 
+  }
+
+  // methode search for an employee
+  static async searchEmployee(req, res) {
+    const position = req.query.position;
+    const name = req.query.name;
+    const phonenumber = req.query.phoneNumber;
+
+    console.log(position);
+    const findEmployee = await Employee.search(position, name, phonenumber);
+    try {
+      // const findEmployee = await Employee.search(position, name, phonenumber);
+      if (findEmployee) {
+        return res.status(200).json({
+          status: 200,
+          message: 'Employee found',
+          data: findEmployee.rows[0],
+        });
+      }
+      return res.status(404).json({
+        status: 404,
+        error: 'Emplloyee not found',
+      });
+    } catch (error) {
+      return res.status(401).json({
+        status: 401,
+        message: 'invalid authantication',
+      });
+    }
   }
   
 }

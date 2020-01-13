@@ -11,6 +11,6 @@ router.post('/signin', validator.signin, employeeController.signin);
 
 router.post('/', auth, employeeController.createEmployee);
 router.delete('/:id', auth, employeeController.deleteEmployee);
-router.put('/:id', auth, employeeController.updateEmplooyee);
+router.get('/search', auth, employeeController.searchEmployee);
 
 export default router;

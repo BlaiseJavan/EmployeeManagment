@@ -79,5 +79,9 @@ class Employee {
     return result;
   }
 
+  static async search(position, name, phonenumber) {
+    const result = await db.query(`SELECT * FROM employee WHERE position='${position}' or employeename='${name}' or phonenumber='${phonenumber}';`);
+    return result;
+  }
 }
 export default Employee;
