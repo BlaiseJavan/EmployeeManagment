@@ -61,7 +61,7 @@ Airbnb
 
 ### API link
 
-[API Documentation](https://documenter.getpostman.com/view/5307042/SVtVTnp7)
+[API Documentation](https://documenter.getpostman.com/view/5307042/SVtR1qMD)
 
 ## Getting started
 
