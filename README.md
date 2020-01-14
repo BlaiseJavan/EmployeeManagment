@@ -42,8 +42,10 @@ Airbnb
 | /api/auth/signin | POST | Signin |
 | /api/employees | POST | create new Employee |
 | /api/employees/:id | PUT | update employee |
-| /api/employees/:id | GET | view a specific employee |
 | /api/employees/:id | DELETE | Delete an employee |
+| /api/employees/:id/search | GET | Search an employee |
+| /api/employees/:id/active | PUT | Activate an employee |
+| /api/employees/:id/suspend | PUT | Suspend an employee |
 
 
 ### Responses
